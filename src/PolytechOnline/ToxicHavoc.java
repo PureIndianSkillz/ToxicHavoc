@@ -1,14 +1,15 @@
 package PolytechOnline;
 
+
+
 import java.util.logging.Logger;
-
-
-
-
-
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import PolytechOnline.threads.StartCountdown;
 
 public class ToxicHavoc extends JavaPlugin{ 
@@ -24,6 +25,37 @@ public class ToxicHavoc extends JavaPlugin{
 		PluginDescriptionFile pdfFile = this.getDescription();
 		ToxicHavoc.logger.info(pdfFile.getName() + " Version" + pdfFile.getVersion() + " Toxic Havoc Development Build Has Been Enabled");
 	}
+	
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+	    Player player = (Player) sender;
+	    //start a game//
+	   if (commandLabel.equalsIgnoreCase("start")){
+		   player.sendMessage(ChatColor.RED + "This command has not been added yet!"); }
+			
+	   if(commandLabel.equalsIgnoreCase("setteamspawn")){
+		   player.sendMessage(ChatColor.RED + "This command has not been added yet!");
+	   }
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			return true;}
+	    
+	
+	
+	
+	
 	public static void start() {
 		
 		
