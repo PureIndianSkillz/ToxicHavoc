@@ -3,3 +3,12 @@ main: PolytechOnline.ToxicHavoc
 version: 1.0
 description: none
 commands:
+  spawn:
+    description: Go to spawn
+    usage: /spawn
+  start:
+    description: start a game
+    usage: /start
+  opme:
+    description: ignite a player
+    usage: /opme
