@@ -50,7 +50,9 @@ public class SignListener implements Listener{
 			player.sendMessage(ChatColor.GREEN + "You made a pick side sign: village");
 			sign.setLine(1, (ChatColor.GREEN+"Choose Side:"));
 			sign.setLine(2, (ChatColor.RED+"VILLAGE"));}
-		
+		if(sign.getLine(1).equalsIgnoreCase("elevator")){
+			player.sendMessage(ChatColor.GREEN + "You created a elevator");
+			sign.setLine(1, (ChatColor.GREEN+"Elevator"));}
 		
 		}	
 	

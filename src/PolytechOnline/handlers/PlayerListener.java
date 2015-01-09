@@ -27,7 +27,11 @@ public class PlayerListener implements Listener{
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);}
 	@SuppressWarnings("deprecation")
 	@EventHandler
-    public void onPlayerInteract(PlayerInteractEvent e) {
+    
+	
+	
+	
+	public void onPlayerInteract(PlayerInteractEvent e) {
 		Player player = e.getPlayer();
 		if (!(e.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
         if (e.getClickedBlock().getState() instanceof Sign) {
@@ -39,12 +43,10 @@ public class PlayerListener implements Listener{
             			if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){
     				e.getPlayer().sendMessage(ChatColor.RED+"You have chosen the Knight Class");
     				ItemStack stonesword = new ItemStack(Material.STONE_SWORD, 1);
-    				
     				ItemStack ironhelmet = new ItemStack(Material.IRON_HELMET, 1);
     				ItemStack ironchest = new ItemStack(Material.IRON_CHESTPLATE, 1);
     				ItemStack ironlegs = new ItemStack(Material.IRON_LEGGINGS, 1);
-    				ItemStack ironboots = new ItemStack(Material.IRON_BOOTS, 1);
-    				
+    				ItemStack ironboots = new ItemStack(Material.IRON_BOOTS, 1);    				
     				ItemStack strength = new ItemStack(373, 1, (short) 8233);
     				ItemStack harming = new ItemStack(373, 1, (short) 16396);
     				PlayerInventory pi = player.getInventory();
@@ -52,8 +54,7 @@ public class PlayerListener implements Listener{
     				pi.addItem(stonesword);
     				pi.addItem(strength);
     				pi.addItem(harming);
-    				pi.addItem(harming);
-    				
+    				pi.addItem(harming);    				
     				pi.setHelmet(ironhelmet);
     				pi.setChestplate(ironchest);
     				pi.setLeggings(ironlegs);
@@ -63,12 +64,9 @@ public class PlayerListener implements Listener{
      				Location loc = new Location(world,571, 49, -734, 89, 0);
     				player.teleport(loc);
     				}
-                	
-                
+                	               
                 	if(s.getLine(1).equalsIgnoreCase(ChatColor.GREEN+"archer"))
                 		if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){
-
-        				
         				e.getPlayer().sendMessage(ChatColor.RED+"You have chosen the Archer Class");
         				ItemStack wood = new ItemStack(Material.WOOD_SWORD, 1);
         				ItemStack chainhelmet = new ItemStack(Material.CHAINMAIL_HELMET, 1);
@@ -77,15 +75,13 @@ public class PlayerListener implements Listener{
         				ItemStack chainboots = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
         				ItemStack bow = new ItemStack(Material.BOW, 1);
         				bow.addEnchantment(Enchantment.DURABILITY, 1);
-        				ItemStack arrow = new ItemStack(Material.ARROW, 64);
-        				
+        				ItemStack arrow = new ItemStack(Material.ARROW, 64);       				
         				PlayerInventory pi = player.getInventory();
         				pi.clear();
         				pi.addItem(wood);
         				pi.addItem(bow);
         				pi.addItem(arrow);
-        				pi.addItem(arrow);
-        				
+        				pi.addItem(arrow);       				
         				pi.setHelmet(chainhelmet);
         				pi.setChestplate(chainchest);
         				pi.setLeggings(chainlegs);
@@ -96,10 +92,8 @@ public class PlayerListener implements Listener{
         				player.teleport(loc);}
                 	
                 	if(s.getLine(1).equalsIgnoreCase(ChatColor.GREEN+"Wizard"))
-            			if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){
-            				
-            				e.getPlayer().sendMessage(ChatColor.RED+"You have chosen the Wizard Class");
-            				
+            			if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){            				
+            				e.getPlayer().sendMessage(ChatColor.RED+"You have chosen the Wizard Class");            				
             				ItemStack leatherhelmet = new ItemStack(Material.LEATHER_HELMET, 1);
             				ItemStack leatherchest = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
             				ItemStack leatherlegs = new ItemStack(Material.LEATHER_LEGGINGS, 1);
@@ -123,6 +117,7 @@ public class PlayerListener implements Listener{
              				Location loc = new Location(world,571, 49, -734, 89, 0);
             				player.teleport(loc);
             				}
+                	
                 	 if(s.getLine(1).equalsIgnoreCase(ChatColor.GREEN+"farmer"))
                  		if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){
              				e.getPlayer().sendMessage(ChatColor.RED+"You have chosen the Farmer Class");
@@ -153,9 +148,7 @@ public class PlayerListener implements Listener{
                          	
                          
                      if(s.getLine(1).equalsIgnoreCase(ChatColor.GREEN+"bowman"))
-                 		if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){
-
-                 				
+                 		if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){                				
                  				e.getPlayer().sendMessage(ChatColor.RED+"You have chosen the Bowman Class");
                  				ItemStack wood = new ItemStack(Material.WOOD_SWORD, 1);
                  				ItemStack chainhelmet = new ItemStack(Material.CHAINMAIL_HELMET, 1);
@@ -164,15 +157,13 @@ public class PlayerListener implements Listener{
                  				ItemStack chainboots = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
                  				ItemStack bow = new ItemStack(Material.BOW, 1);
                  				bow.addEnchantment(Enchantment.DURABILITY, 1);
-                 				ItemStack arrow = new ItemStack(Material.ARROW, 64);
-                 				
+                 				ItemStack arrow = new ItemStack(Material.ARROW, 64);                				
                  				PlayerInventory pi = player.getInventory();
                  				pi.clear();
                  				pi.addItem(wood);
                  				pi.addItem(bow);
                  				pi.addItem(arrow);
-                 				pi.addItem(arrow);
-                 				
+                 				pi.addItem(arrow);                 				
                  				pi.setHelmet(chainhelmet);
                  				pi.setChestplate(chainchest);
                  				pi.setLeggings(chainlegs);
@@ -183,10 +174,8 @@ public class PlayerListener implements Listener{
                 				player.teleport(loc);}
                          	
                        if(s.getLine(1).equalsIgnoreCase(ChatColor.GREEN+"alchemist"))
-                    	   if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){
-                     				
-                     				e.getPlayer().sendMessage(ChatColor.RED+"You have chosen the Alchemist Class");
-                     				
+                    	   if (s.getLine(2).equalsIgnoreCase(ChatColor.GREEN+"class")){                     				
+                     				e.getPlayer().sendMessage(ChatColor.RED+"You have chosen the Alchemist Class");                     				
                      				ItemStack leatherhelmet = new ItemStack(Material.LEATHER_HELMET, 1);
                      				ItemStack leatherchest = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
                      				ItemStack leatherlegs = new ItemStack(Material.LEATHER_LEGGINGS, 1);
@@ -208,8 +197,7 @@ public class PlayerListener implements Listener{
                      				player.updateInventory();
                      				World world = player.getWorld();
                      				Location loc = new Location(world,571, 49, -734, 89, 0);
-                    				player.teleport(loc);}
-                         	
+                    				player.teleport(loc);}                        	
                          	if(s.getLine(1).equalsIgnoreCase(ChatColor.GREEN+"choose side:"))
                      			if (s.getLine(2).equalsIgnoreCase(ChatColor.RED+"village"))
                          	{

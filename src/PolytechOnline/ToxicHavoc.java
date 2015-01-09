@@ -26,6 +26,7 @@ public class ToxicHavoc extends JavaPlugin{
 		new PolytechOnline.handlers.SignListener(this);
 		new PolytechOnline.handlers.PlayerListener(this);
 		new PolytechOnline.handlers.DropListener(this);
+		new PolytechOnline.handlers.ProxyCard(this);
 		PluginDescriptionFile pdfFile = this.getDescription();
 		ToxicHavoc.logger.info(pdfFile.getName() + " Version" + pdfFile.getVersion() + " Toxic Havoc Development Build Has Been Enabled");
 	}

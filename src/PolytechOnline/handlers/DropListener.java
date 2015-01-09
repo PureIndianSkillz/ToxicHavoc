@@ -27,24 +27,31 @@ public class DropListener implements Listener{
 	public void onPlayerDropItem(PlayerDropItemEvent event) {
 	
 		if(event.getItemDrop().getItemStack().getType() == Material.BOWL){
-			event.setCancelled(true); }
+			event.setCancelled(true);
+			event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + "You attempt to drop the item. But it flies back into your hand!");}
 		if(event.getItemDrop().getItemStack().getType() == Material.STONE_SWORD){
-			event.setCancelled(true); }
+			event.setCancelled(true);
+			event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + "You attempt to drop the item. But it flies back into your hand!");}
 		if(event.getItemDrop().getItemStack().getType() == Material.WOOD_SWORD){
-			event.setCancelled(true); }
+			event.setCancelled(true);
+			event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + "You attempt to drop the item. But it flies back into your hand!");}
 		if(event.getItemDrop().getItemStack().getType() == Material.BOW){
-			event.setCancelled(true); }
+			event.setCancelled(true);
+			event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + "You attempt to drop the item. But it flies back into your hand!");}
 		if(event.getItemDrop().getItemStack().getType() == Material.ARROW){
-			event.setCancelled(true); }
+			event.setCancelled(true);
+			event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + "You attempt to drop the item. But it flies back into your hand!");}
 		if(event.getItemDrop().getItemStack().getType() == Material.STICK){
-			event.setCancelled(true); }}
+			event.setCancelled(true); 
+			event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + "You attempt to drop the item. But it flies back into your hand!");}}
 	
 
 	@EventHandler
 	//Prevents player from taking off armor//
 		public  void onClick(InventoryClickEvent event){
 		        if(event.getSlotType() == InventoryType.SlotType.ARMOR){
-		         event.setCancelled(true);}}
+		         event.setCancelled(true);
+		         }}
 		  
 		//Prevents player from dropping items on death//
 		public void onPlayerDeath(PlayerDeathEvent event){
