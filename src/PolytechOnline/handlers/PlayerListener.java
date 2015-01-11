@@ -218,9 +218,16 @@ public class PlayerListener implements Listener{
                          		player.sendMessage(ChatColor.DARK_PURPLE+"You choose the side: Castle");
                          		World world1 = player.getWorld();
                          		Location loc1 = new Location(world1, 571, 49, -734, 89, 0);
-                				player.teleport(loc1); }}
+                				player.teleport(loc1); }
+                         	
+                         	if(s.getLine(1).equalsIgnoreCase(ChatColor.RED+"VillageTeam"))
+                     			
+                         	{
+                         			
+        
+        }
                          		
-                         	}
+                         	}}}
             	
         
             	
@@ -238,4 +245,4 @@ public class PlayerListener implements Listener{
         
         
         
-            	}
+            	

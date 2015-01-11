@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import PolytechOnline.threads.StartCountdown;
 
+
 public class ToxicHavoc extends JavaPlugin{ 
 	public static  Logger logger = Logger.getLogger("Minecraft");
 	public static ToxicHavoc plugin;
@@ -27,6 +28,7 @@ public class ToxicHavoc extends JavaPlugin{
 		new PolytechOnline.handlers.PlayerListener(this);
 		new PolytechOnline.handlers.DropListener(this);
 		new PolytechOnline.handlers.ProxyCard(this);
+	
 		PluginDescriptionFile pdfFile = this.getDescription();
 		ToxicHavoc.logger.info(pdfFile.getName() + " Version" + pdfFile.getVersion() + " Toxic Havoc Development Build Has Been Enabled");
 	}
@@ -45,6 +47,7 @@ public class ToxicHavoc extends JavaPlugin{
 			Location loc = new Location(world,571, 49, -734, 89, 0);
 			player.teleport(loc);}
 			
+	
 			
 			
 			
@@ -54,7 +57,6 @@ public class ToxicHavoc extends JavaPlugin{
 			
 			
 			
-			{}
 			
 			
 			

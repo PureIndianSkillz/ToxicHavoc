@@ -10,7 +10,7 @@ public class StartCountdown implements Runnable{
 	private static int timeUntilStart;
 	
 	public void run() {
-		
+		timeUntilStart = 60;
 		while (true) {
 			timeUntilStart = 60;
 			for (; timeUntilStart >=0; timeUntilStart--) {
@@ -19,7 +19,7 @@ public class StartCountdown implements Runnable{
 					break;
 				}
 			
-				if(timeUntilStart % 10==0 || timeUntilStart < 10) {
+				if(timeUntilStart % 10 == 0 || timeUntilStart < 10) {
 					ChatUtilities.broadcast(timeUntilStart + "seconds until game starts");
 				}
 				try {
