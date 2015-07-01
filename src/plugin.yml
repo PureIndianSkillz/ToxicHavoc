@@ -1,0 +1,31 @@
+name: ToxicHavoc
+version: 0.1
+description: Two teams battles to posion each other's water supply.
+author: PureIndianSkillz
+website: null
+main: ToxicHavoc.ToxicHavoc
+commands:
+  jointeamvillage:
+    description: 'Joins team.'
+    usage: 'Usage: /<command>'
+    aliases: []
+  set:
+    description: 'Joins team.'
+    usage: 'Usage: /<command>'
+    aliases: []
+  startgame:
+    description: 'Joins team.'
+    usage: 'Usage: /<command>'
+    aliases: []
+  endgame:
+    description: 'Joins team.'
+    usage: 'Usage: /<command>'
+    aliases: []
+  leaveteam:
+    description: 'Joins team.'
+    usage: 'Usage: /<command>'
+    aliases: []
+  jointeam:
+    description: 'Joins team.'
+    usage: 'Usage: /<command>'
+    aliases: []

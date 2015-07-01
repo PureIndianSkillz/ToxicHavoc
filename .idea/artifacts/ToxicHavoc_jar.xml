@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ToxicHavoc:jar">
+    <output-path>F:/Desktop</output-path>
+    <root id="archive" name="ToxicHavoc.jar">
+      <element id="module-output" name="ToxicHavoc" />
+      <element id="extracted-dir" path="F:/Desktop/craftbukkit.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

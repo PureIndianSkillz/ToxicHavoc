@@ -3,23 +3,26 @@ package ToxicHavoc;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Server;
+
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ToxicHavoc
-  extends JavaPlugin
+public class ToxicHavoc extends JavaPlugin
 {
   public static ToxicHavoc instance;
-  ArrayList<Player> tc = new ArrayList();
-  ArrayList<Player> tv = new ArrayList();
+  ArrayList<Player> tc = new ArrayList<Player>();
+  ArrayList<Player> tv = new ArrayList<Player>();
   
   public void onDisable()
   {
@@ -64,6 +67,9 @@ public class ToxicHavoc
           String[] loc = getConfig().getString("LobbySpawn").split(",");
           player.teleport(new Location(player.getWorld(), Double.parseDouble(loc[0]), Double.parseDouble(loc[1]), Double.parseDouble(loc[2])));
           sender.sendMessage("You've joined Team Castle");
+          Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE+"Toxic Havoc: " + ChatColor.BLUE + player.getDisplayName() + ChatColor.GOLD +" has joined team Castle" );
+          player.getInventory().clear();
+          player.setGameMode(GameMode.ADVENTURE);
           return true;
         }
         if (args[0].equalsIgnoreCase("village"))
@@ -78,8 +84,35 @@ public class ToxicHavoc
           String[] loc = getConfig().getString("LobbySpawn").split(",");
           player.teleport(new Location(player.getWorld(), Double.parseDouble(loc[0]), Double.parseDouble(loc[1]), Double.parseDouble(loc[2])));
           sender.sendMessage("You've joined Team Village");
+          Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE+"Toxic Havoc: " + ChatColor.RED + player.getDisplayName() + ChatColor.GOLD +" has joined team Village" );
+          player.getInventory().clear();
+          player.setGameMode(GameMode.ADVENTURE);
           return true;
         }
+      }
+    }
+    if (cmd.getName().equalsIgnoreCase("leaveteam"))
+    {
+      String[] loc = getConfig().getString("LobbySpawn").split(",");
+      if (this.tv.contains(player))
+      {
+        this.tv.remove(player);
+        player.sendMessage("You have left your team.");
+        player.teleport(new Location(player.getWorld(), Double.parseDouble(loc[0]), Double.parseDouble(loc[1]), Double.parseDouble(loc[2])));
+        World world = player.getWorld();
+        world.setSpawnLocation(560, 49, -733);
+      }
+      else if (this.tc.contains(player))
+      {
+        this.tc.remove(player);
+        player.sendMessage("You have left your team.");
+        player.teleport(new Location(player.getWorld(), Double.parseDouble(loc[0]), Double.parseDouble(loc[1]), Double.parseDouble(loc[2])));
+        World world = player.getWorld();
+        world.setSpawnLocation(560, 49, -733);
+      }
+      else
+      {
+        player.sendMessage("You are not on a team.");
       }
     }
     if (cmd.getName().equalsIgnoreCase("set"))
@@ -136,7 +169,6 @@ public class ToxicHavoc
         }
       }
     }
-    String[] loc2;
     if ((cmd.getName().equalsIgnoreCase("startgame")) && (args.length == 0))
     {
       if (!player.isOp())
@@ -146,15 +178,22 @@ public class ToxicHavoc
       }
       String[] loc1 = getConfig().getString("CastleSpawn").split(",");
       Location cs = new Location(player.getWorld(), Double.parseDouble(loc1[0]), Double.parseDouble(loc1[1]), Double.parseDouble(loc1[2]));
-      loc2 = getConfig().getString("VillageSpawn").split(",");
+      String[] loc2 = getConfig().getString("VillageSpawn").split(",");
       Location vs = new Location(player.getWorld(), Double.parseDouble(loc2[0]), Double.parseDouble(loc2[1]), Double.parseDouble(loc2[2]));
       for (Player p : this.tc) {
         p.teleport(cs);
+
       }
       for (Player p : this.tv) {
         p.teleport(vs);
+
       }
-      sender.getServer().broadcastMessage("The game has begun!");
+      sender.getServer().broadcastMessage(ChatColor.GOLD+"**********************************");
+      sender.getServer().broadcastMessage(ChatColor.LIGHT_PURPLE+"             Toxic Havoc ");
+      sender.getServer().broadcastMessage(ChatColor.GOLD+"         The game has begun!");
+      sender.getServer().broadcastMessage(ChatColor.GOLD+"**********************************");
+
+
       return true;
     }
     if ((cmd.getName().equalsIgnoreCase("endgame")) && (args.length == 0))
@@ -168,12 +207,15 @@ public class ToxicHavoc
       Location ls = new Location(player.getWorld(), Double.parseDouble(loc[0]), Double.parseDouble(loc[1]), Double.parseDouble(loc[2]));
       for (Player p : this.tc) {
         p.teleport(ls);
+        this.tc.clear();
       }
       for (Player p : this.tv) {
         p.teleport(ls);
+        this.tv.clear();
       }
       getServer().broadcastMessage("The game has been ended early by " + sender.getName());
-      endGame();
+      endGame((Player)sender);
+      
       return true;
     }
     return true;
@@ -205,9 +247,39 @@ public class ToxicHavoc
     return tvl;
   }
   
-  public void endGame()
+  public void endGame(Player p)
   {
+    String[] tcl = grabTC().split(",");
+    String[] tvl = grabTV().split(",");
+    String[] ls = getConfig().getString("LobbySpawn").split(",");
+    if (grabTC() != null) {
+      for (String pl : tcl)
+      {
+        Player player = p.getServer().getPlayer(pl);
+        player.getInventory().clear();
+        player.teleport(new Location(p.getWorld(), Double.parseDouble(ls[0]), Double.parseDouble(ls[1]), Double.parseDouble(ls[2])));
+        World world = player.getWorld();
+        world.setSpawnLocation(560, 49, -733);
+      }
+    }
+    if (grabTV() != null) {
+      for (String pl : tvl)
+      {
+        Player player = p.getServer().getPlayer(pl);
+        player.getInventory().clear();
+        player.teleport(new Location(p.getWorld(), Double.parseDouble(ls[0]), Double.parseDouble(ls[1]), Double.parseDouble(ls[2])));
+        World world = player.getWorld();
+        world.setSpawnLocation(560, 49, -733);
+      }
+    }
     this.tc.clear();
     this.tv.clear();
   }
+
+
+
+
+
+
+  
 }

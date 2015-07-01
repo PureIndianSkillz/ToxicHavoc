@@ -1,0 +1,11 @@
+#########################
+#      ToxicHavoc       #
+#    --------------     #
+#       Settings        #
+#########################
+#Do not edit this unless you know what you are doing.
+CastleSpawn: 1,2,3
+VillageSpawn: 4,5,6
+LobbySpawn: 7,8,9
+CastleWater: 01
+VillageWater: 02
