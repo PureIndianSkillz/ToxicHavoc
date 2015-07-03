@@ -17,6 +17,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 public class ToxicHavoc extends JavaPlugin
 {
@@ -37,7 +40,8 @@ public class ToxicHavoc extends JavaPlugin
     Bukkit.getLogger().log(Level.INFO, "[ToxicHavoc] Enabled.");
     saveDefaultConfig();
   }
-  
+
+
   public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
   {
     Player player = (Player)sender;
@@ -70,6 +74,8 @@ public class ToxicHavoc extends JavaPlugin
           Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE+"Toxic Havoc: " + ChatColor.BLUE + player.getDisplayName() + ChatColor.GOLD +" has joined team Castle" );
           player.getInventory().clear();
           player.setGameMode(GameMode.ADVENTURE);
+
+
           return true;
         }
         if (args[0].equalsIgnoreCase("village"))
@@ -87,6 +93,8 @@ public class ToxicHavoc extends JavaPlugin
           Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE+"Toxic Havoc: " + ChatColor.RED + player.getDisplayName() + ChatColor.GOLD +" has joined team Village" );
           player.getInventory().clear();
           player.setGameMode(GameMode.ADVENTURE);
+
+
           return true;
         }
       }
@@ -176,6 +184,7 @@ public class ToxicHavoc extends JavaPlugin
         sender.sendMessage("You are not an Op.");
         return true;
       }
+
       String[] loc1 = getConfig().getString("CastleSpawn").split(",");
       Location cs = new Location(player.getWorld(), Double.parseDouble(loc1[0]), Double.parseDouble(loc1[1]), Double.parseDouble(loc1[2]));
       String[] loc2 = getConfig().getString("VillageSpawn").split(",");
@@ -186,6 +195,8 @@ public class ToxicHavoc extends JavaPlugin
       }
       for (Player p : this.tv) {
         p.teleport(vs);
+
+
 
       }
       sender.getServer().broadcastMessage(ChatColor.GOLD+"**********************************");
@@ -260,6 +271,7 @@ public class ToxicHavoc extends JavaPlugin
         player.teleport(new Location(p.getWorld(), Double.parseDouble(ls[0]), Double.parseDouble(ls[1]), Double.parseDouble(ls[2])));
         World world = player.getWorld();
         world.setSpawnLocation(560, 49, -733);
+
       }
     }
     if (grabTV() != null) {
@@ -270,6 +282,7 @@ public class ToxicHavoc extends JavaPlugin
         player.teleport(new Location(p.getWorld(), Double.parseDouble(ls[0]), Double.parseDouble(ls[1]), Double.parseDouble(ls[2])));
         World world = player.getWorld();
         world.setSpawnLocation(560, 49, -733);
+
       }
     }
     this.tc.clear();
