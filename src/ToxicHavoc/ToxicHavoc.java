@@ -17,9 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.bukkit.scoreboard.Team;
+import org.bukkit.scoreboard.*;
 
 public class ToxicHavoc extends JavaPlugin
 {
@@ -39,6 +37,7 @@ public class ToxicHavoc extends JavaPlugin
     getServer().getPluginManager().registerEvents(new ToxicHavocL(this), this);
     Bukkit.getLogger().log(Level.INFO, "[ToxicHavoc] Enabled.");
     saveDefaultConfig();
+      scoreboard();
   }
 
 
@@ -74,7 +73,7 @@ public class ToxicHavoc extends JavaPlugin
           Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE+"Toxic Havoc: " + ChatColor.BLUE + player.getDisplayName() + ChatColor.GOLD +" has joined team Castle" );
           player.getInventory().clear();
           player.setGameMode(GameMode.ADVENTURE);
-
+            addcastle(player);
 
           return true;
         }
@@ -93,7 +92,7 @@ public class ToxicHavoc extends JavaPlugin
           Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE+"Toxic Havoc: " + ChatColor.RED + player.getDisplayName() + ChatColor.GOLD +" has joined team Village" );
           player.getInventory().clear();
           player.setGameMode(GameMode.ADVENTURE);
-
+            addvillage(player);
 
           return true;
         }
@@ -109,6 +108,7 @@ public class ToxicHavoc extends JavaPlugin
         player.teleport(new Location(player.getWorld(), Double.parseDouble(loc[0]), Double.parseDouble(loc[1]), Double.parseDouble(loc[2])));
         World world = player.getWorld();
         world.setSpawnLocation(560, 49, -733);
+        removevillage(player);
       }
       else if (this.tc.contains(player))
       {
@@ -117,6 +117,7 @@ public class ToxicHavoc extends JavaPlugin
         player.teleport(new Location(player.getWorld(), Double.parseDouble(loc[0]), Double.parseDouble(loc[1]), Double.parseDouble(loc[2])));
         World world = player.getWorld();
         world.setSpawnLocation(560, 49, -733);
+        removecastle(player);
       }
       else
       {
@@ -268,10 +269,15 @@ public class ToxicHavoc extends JavaPlugin
       {
         Player player = p.getServer().getPlayer(pl);
         player.getInventory().clear();
+        player.getInventory().setHelmet(null);
+        player.getInventory().setChestplate(null);
+        player.getInventory().setLeggings(null);
+        player.getInventory().setBoots(null);
+        player.updateInventory();
         player.teleport(new Location(p.getWorld(), Double.parseDouble(ls[0]), Double.parseDouble(ls[1]), Double.parseDouble(ls[2])));
         World world = player.getWorld();
         world.setSpawnLocation(560, 49, -733);
-
+        removecastle(player);
       }
     }
     if (grabTV() != null) {
@@ -279,9 +285,15 @@ public class ToxicHavoc extends JavaPlugin
       {
         Player player = p.getServer().getPlayer(pl);
         player.getInventory().clear();
+          player.getInventory().setHelmet(null);
+          player.getInventory().setChestplate(null);
+          player.getInventory().setLeggings(null);
+          player.getInventory().setBoots(null);
+          player.updateInventory();
         player.teleport(new Location(p.getWorld(), Double.parseDouble(ls[0]), Double.parseDouble(ls[1]), Double.parseDouble(ls[2])));
         World world = player.getWorld();
         world.setSpawnLocation(560, 49, -733);
+          removevillage(player);
 
       }
     }
@@ -289,10 +301,59 @@ public class ToxicHavoc extends JavaPlugin
     this.tv.clear();
   }
 
+    Scoreboard board;
+    Objective obj;
+    Team castle;
+    Team village;
+  public void scoreboard(){
+      board = Bukkit.getScoreboardManager().getNewScoreboard();
+      village = board.registerNewTeam("village");
+      village.setPrefix(ChatColor.RED+"Village: ");
+      village.setAllowFriendlyFire(false);
+      castle = board.registerNewTeam("castle");
+      castle.setPrefix(ChatColor.BLUE+"Castle: ");
+      castle.setAllowFriendlyFire(false);
+
+      obj = board.registerNewObjective("showhealth", "health");
+      obj.setDisplaySlot(DisplaySlot.BELOW_NAME);
+      obj.setDisplayName("/ 20");
 
 
 
 
+  }
 
-  
+    public void addvillage(Player player){
+        village.addPlayer(player);
+        player.setScoreboard(board);
+        player.setHealth(player.getHealth()); //Update their health
+    }
+
+    public void addcastle(Player player){
+        castle.addPlayer(player);
+        player.setScoreboard(board);
+        player.setHealth(player.getHealth());
+}
+  public void removevillage(Player player){
+      village.removePlayer(player);
+      blankscoreboard(player);
+
+  }
+    public void removecastle(Player player){
+    castle.removePlayer(player);
+    blankscoreboard(player);
+
+
+
+
+}
+    public void blankscoreboard(Player player){
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard board = manager.getNewScoreboard();
+        player.setScoreboard(manager.getNewScoreboard());
+
+}
+
+
+
 }
